@@ -3,9 +3,9 @@ package logic;
 public class Person {
 
     private String name;
-    private short thLevel;
+    private int thLevel;
 
-    public Person(String name, short thLevel) {
+    public Person(String name, int thLevel) {
         this.name = name;
         this.thLevel = thLevel;
     }
@@ -18,11 +18,11 @@ public class Person {
         this.name = name;
     }
 
-    public short getThLevel() {
+    public int getThLevel() {
         return thLevel;
     }
 
-    public void setThLevel(short thLevel) {
+    public void setThLevel(int thLevel) {
         this.thLevel = thLevel;
     }
 }

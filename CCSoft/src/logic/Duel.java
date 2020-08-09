@@ -3,13 +3,15 @@ package logic;
 public class Duel {
 
     private Person attacker;
-    private short stars;
-    private short thLevelAttacked;
+    private int stars;
+    private Person defender;
+    private double destructionPercent;
 
-    public Duel(Person attacker, short stars, short thLevelAttacked) {
+    public Duel(Person attacker, int stars, Person defender, double destructionPercent) {
         this.attacker = attacker;
         this.stars = stars;
-        this.thLevelAttacked = thLevelAttacked;
+        this.defender = defender;
+        this.destructionPercent = destructionPercent;
     }
 
     public Person getAttacker() {
@@ -20,19 +22,44 @@ public class Duel {
         this.attacker = attacker;
     }
 
-    public short getStars() {
+    public int getStars() {
         return stars;
     }
 
-    public void setStars(short stars) {
+    public void setStars(int stars) {
         this.stars = stars;
     }
 
-    public short getThLevelAttacked() {
-        return thLevelAttacked;
+    public Person getDefender() {
+        return defender;
     }
 
-    public void setThLevelAttacked(short thLevelAttacked) {
-        this.thLevelAttacked = thLevelAttacked;
+    public void setDefender(Person defender) {
+        this.defender = defender;
     }
+
+    public double getDestructionPercent() {
+        return destructionPercent;
+    }
+
+    public void setDestructionPercent(double destructionPercent) {
+        this.destructionPercent = destructionPercent;
+    }
+
+    public double pointsGained(){
+        double thCoeficient = 1;
+        int difference = attacker.getThLevel()-defender.getThLevel();
+        if(difference < 0){
+            thCoeficient+= difference*0.25*-1;
+        }
+        else if(difference > 0){
+            thCoeficient-= difference*0.25;
+            if (thCoeficient <=0){
+                thCoeficient =  0.1;
+            }
+        }
+        return stars*destructionPercent*thCoeficient;
+    }
+    
+    
 }
